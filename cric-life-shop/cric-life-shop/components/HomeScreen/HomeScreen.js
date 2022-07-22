@@ -7,6 +7,7 @@ export function HomeScreen() {
   return (
     <View>
       <SearchBar />
+      <ProductContainer />
     </View>
   )
 }
