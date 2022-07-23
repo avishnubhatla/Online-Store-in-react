@@ -1,37 +1,35 @@
-import React from 'react';
-import useState from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+
+import { Text, View, StyleSheet, Image } from 'react-native';
 import {SearchBar } from "./SearchBar"
 import {Product} from './Product'
 import {ProductContainer} from './ProductContainer'
-import leatherball from "../../assets/assets/leatherball.jpeg";
-import cricketball from "../../assets/assets/cricketball.jpg";
-import kookaburrabat from "../../assets/assets/kookaburrabat.jpg";
-import sscricketstumps from "../../assets/assets/sscricketstumps.jpeg";
-import bowlingmachine from "../../assets/assets/bowlingmachine.webp";
-import ropeball from "../../assets/assets/ropeball.webp";
-import cricketshoes from "../../assets/assets/cricketshoes.jpg";
-import cricketmat from "../../assets/assets/cricketmat.webp";
-import cricketkit from "../../assets/assets/cricketkit.jpg";
-import crickethelmet from "../../assets/assets/crickethelmet.jpg";
+
 export function HomeScreen() {
   const [products, newProducts]=useState([
-    {img: leatherball, name: "White Ball", price: "$7"},
-    {img: cricketball, name: "Red Ball", price: "$7"},
-    {img: kookaburrabat, name: 'Kookaburra Bat', price: "$100"},
-    {img: sscricketstumps, name: "Cricket Stumps", price: "$70"},
-    {img: bowlingmachine, name: "Bowling Machine", price: "$600"},
-    {img: ropeball, name: "Rope Ball", price: "$15"},
-    {img: cricketshoes, name: "Cricket Shoes", price: "$80"},
-    {img: cricketmat, name: "Cricket Pitch", price: "$300"},
-    {img: cricketkit, name: "Cricket Kit", price: "$250"},
-    {img: crickethelmet, name: "Cricket Helmet", price: "$40"}])
+    { uri: "https://m.media-amazon.com/images/I/51IwaYzGLCL._AC_SX679_.jpg", name: "White Ball", price: "$7"},
+    {uri:'https://images.squarespace-cdn.com/content/v1/5fd20db1750b345d8b151572/1607681222132-OIU32C99X3V195ZDG5AE/Red+Premier+Side.jpg?format=750w', name: "Red Ball", price: "$7"},
+    {uri: 'https://m.media-amazon.com/images/I/81bxuZCpdpL._AC_SY879_.jpg', name: 'Kookaburra Bat', price: "$100"},
+    {uri: 'https://bestcricketstore.com/wp-content/uploads/2022/01/e3e916c8-b859-46b3-b197-2c9c7d7c1f69.jpeg', name: "Cricket Stumps", price: "$70"},
+    {uri: 'https://cdn.shopify.com/s/files/1/0020/7477/1565/products/first-pitch-bowler-pro-2-wheel-cricket-bowling-machine-16140464029805_1024x1024.jpg?v=1612371229', name: "Bowling Machine", price: "$600"},
+    {uri: 'https://i.ebayimg.com/images/g/9SQAAOSwvGRh4CAH/s-l500.jpg', name: "Rope Ball", price: "$15"},
+    {uri: 'https://cdn.shopify.com/s/files/1/0614/7149/0275/products/dsc-neon_750x.jpg?v=1651675829', name: "Cricket Shoes", price: "$80"},
+    {uri: 'https://m.media-amazon.com/images/I/916LckrjstS._AC_SX679_.jpg', name: "Cricket Pitch", price: "$300"},
+    {uri: 'https://m.media-amazon.com/images/I/51GJDjJGHLL._AC_.jpg', name: "Cricket Kit", price: "$250"},
+    {uri: 'https://m.media-amazon.com/images/I/51mI2UYeHGL._AC_SX466_.jpg', name: "Cricket Helmet", price: "$40"}])
   return (
     <View>
       <SearchBar />
+      <Image source={products[0]} style={{ width: 300, height: 300 }}/>
+      <Image source={products[1]} style={{ width: 300, height: 300 }}/>
+      <Image source={products[2]} style={{ width: 300, height: 300 }}/>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  
+});
 
 const styles = StyleSheet.create({
   
