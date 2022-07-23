@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView } from 'react-native';
 import {SearchBar } from "./SearchBar"
 import {Product} from './Product'
 import {ProductContainer} from './ProductContainer'
@@ -20,9 +20,18 @@ export function HomeScreen() {
   return (
     <View>
       <SearchBar />
-      <Image source={products[0]} style={{ width: 300, height: 300 }}/>
-      <Image source={products[1]} style={{ width: 300, height: 300 }}/>
-      <Image source={products[2]} style={{ width: 300, height: 300 }}/>
+      <ScrollView>
+        <Image source={products[0]} style={{ width: 300, height: 300 }}/>
+        <Image source={products[1]} style={{ width: 300, height: 300 }}/>
+        <Image source={products[2]} style={{ width: 300, height: 300 }}/>
+        <Image source={products[3]} style={{ width: 300, height: 300 }}/>
+        <Image source={products[4]} style={{ width: 300, height: 300 }}/>
+        <Image source={products[5]} style={{ width: 300, height: 300 }}/>
+        <Image source={products[6]} style={{ width: 300, height: 300 }}/>
+        <Image source={products[7]} style={{ width: 300, height: 300 }}/>
+        <Image source={products[8]} style={{ width: 300, height: 300 }}/>
+        <Image source={products[9]} style={{ width: 300, height: 300 }}/>
+      </ScrollView>
     </View>
   )
 }
@@ -31,6 +40,3 @@ const styles = StyleSheet.create({
   
 });
 
-const styles = StyleSheet.create({
-  
-});
