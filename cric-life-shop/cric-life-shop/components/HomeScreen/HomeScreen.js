@@ -22,16 +22,7 @@ export function HomeScreen() {
       <Text>Start Your Cricketing Journey With CricLife!</Text>
       <SearchBar />
       <ScrollView>
-        <Image source={products[0]} style={{ width: 300, height: 300 }}/>
-        <Image source={products[1]} style={{ width: 300, height: 300 }}/>
-        <Image source={products[2]} style={{ width: 300, height: 300 }}/>
-        <Image source={products[3]} style={{ width: 300, height: 300 }}/>
-        <Image source={products[4]} style={{ width: 300, height: 300 }}/>
-        <Image source={products[5]} style={{ width: 300, height: 300 }}/>
-        <Image source={products[6]} style={{ width: 300, height: 300 }}/>
-        <Image source={products[7]} style={{ width: 300, height: 300 }}/>
-        <Image source={products[8]} style={{ width: 300, height: 300 }}/>
-        <Image source={products[9]} style={{ width: 300, height: 300 }}/>
+        <ProductContainer />      
       </ScrollView>
     </View>
   )
@@ -40,4 +31,5 @@ export function HomeScreen() {
 const styles = StyleSheet.create({
   
 });
+
 
