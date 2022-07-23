@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
   searchBar: {
     borderWidth: 1,
     width: "80%",
-    height: "40%",
+    height: 40,
     borderRadius: "10%",
     backgroundColor: "white",
-    marginTop: 15,
+    marginTop: 200,
     padding: 5,
   },
 });
