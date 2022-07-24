@@ -18,18 +18,17 @@ export function HomeScreen() {
     {uri: 'https://m.media-amazon.com/images/I/51GJDjJGHLL._AC_.jpg', name: "Cricket Kit", price: "$250"},
     {uri: 'https://m.media-amazon.com/images/I/51mI2UYeHGL._AC_SX466_.jpg', name: "Cricket Helmet", price: "$40"}])
   return (
-    <View>
-      <Text>Start Your Cricketing Journey With CricLife!</Text>
+    <View style={styles.layout}>
       <SearchBar />
-      <ScrollView>
-        <ProductContainer />      
-      </ScrollView>
+      <ProductContainer />      
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  
+  layout: {
+    flex: 1,
+  },
 });
 
 
