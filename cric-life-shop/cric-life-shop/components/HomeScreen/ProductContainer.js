@@ -2,13 +2,16 @@ import * as React from 'react';
 import { ScrollView, Text, View, StyleSheet } from 'react-native';
 import { Product } from "./Product"
 
-export function ProductContainer() {
+export function ProductContainer(props) {
   return (
     <View style={styles.layout}>
       <ScrollView>
         <View style={styles.textContainer}>
           <Text style={styles.welcomeText}>Start Your Cricketing Journey With CricLife!</Text>
         </View>
+          {props.products.map(({uri, name, price }, index) => (
+          <Product src={uri} productName={name} price={price} />
+          ))}
       </ScrollView>
     </View>
   )
@@ -28,6 +31,5 @@ const styles = StyleSheet.create({
 
   },
 });
-
 
 
