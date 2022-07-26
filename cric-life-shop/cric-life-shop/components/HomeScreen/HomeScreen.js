@@ -17,16 +17,18 @@ export function HomeScreen() {
     {uri: 'https://m.media-amazon.com/images/I/916LckrjstS._AC_SX679_.jpg', name: "Cricket Pitch", price: "$300"},
     {uri: 'https://m.media-amazon.com/images/I/51GJDjJGHLL._AC_.jpg', name: "Cricket Kit", price: "$250"},
     {uri: 'https://m.media-amazon.com/images/I/51mI2UYeHGL._AC_SX466_.jpg', name: "Cricket Helmet", price: "$40"}])
-  const handleChange=(text) => {
-    console.log('random-')
+
+  const handleChange = (text) => {
     const newProductArray = products.filter(product => {
       return product.name.slice(0, text.length)===text
     });
+    console.log(newProductArray)
     return newProductArray
   }
+
   return (
     <View style={styles.layout}>
-      <SearchBar />
+      <SearchBar onChangeText={handleChange}/>
       <ProductContainer />
     </View>
   )
