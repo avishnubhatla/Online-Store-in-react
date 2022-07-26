@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { ScrollView, Text, View, StyleSheet } from 'react-native';
+import { Product } from "./Product"
 
 export function ProductContainer() {
   return (
     <View style={styles.layout}>
       <ScrollView>
-        <Text style={styles.welcomeText}>Start Your Cricketing Journey With CricLife!</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.welcomeText}>Start Your Cricketing Journey With CricLife!</Text>
+        </View>
       </ScrollView>
     </View>
   )
@@ -14,12 +17,15 @@ export function ProductContainer() {
 const styles = StyleSheet.create({
   layout: {
     flex: 5,
-    alignItems: "center",
   },
   welcomeText: {
     margin: 10,
     fontSize: 30,
     fontWeight: "bold",
+  },
+  textContainer: {
+    alignItems: "center",
+
   },
 });
 
