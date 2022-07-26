@@ -1,11 +1,18 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { TextInput, Text, View, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export function SearchBar() {
+export function SearchBar(props) {
+  const [text, setText] = useState("")
+
+  const handleChange = text => {
+    setText(text)
+    props.onChangeText(text)
+  }
   return (
     <LinearGradient colors={['#FF0000', '#CC0033', "#990066", "#660099", "#3300CC", "#0000FF"]} style={styles.layout} start={{x: 0, y: 0.5}} end={{x: 1, y: 0.5}}>
-      <TextInput style={styles.searchBar} placeholder="Search CricLife Store"/>
+      <TextInput style={styles.searchBar} placeholder="Search CricLife Store" value={text}
+      onChangeText={text => handleChange(text)}/>
     </LinearGradient>
   )
 }
