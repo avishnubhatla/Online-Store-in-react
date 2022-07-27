@@ -20,9 +20,8 @@ export function HomeScreen() {
   const [currProducts, newCurrProducts]=useState(products)
   const handleChange = (text) => {
     const newProductArray = products.filter(product => {
-      return product.name.slice(0, text.length).toLowerCase() === text.toLowerCase()
+      return (product.name.toLowerCase().includes(text.toLowerCase()))
     });
-    console.log(newProductArray)
     newCurrProducts(newProductArray)
   }
 
@@ -40,4 +39,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
