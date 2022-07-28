@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, TextInput, StyleSheet, ScrollView, FlatList} from 'react-native';
+import { Text, View, TextInput, StyleSheet, ScrollView, FlatList, Button} from 'react-native';
 
 export function Profile(props) {
 
@@ -26,9 +26,7 @@ export function Profile(props) {
       
       <FlatList
         // pass in a props object like data and put it here, then render it
-        data={[
-          {key: "ball"}
-        ]}
+        data={props.data}
         renderItem={({item}) => <Text style={styles.listText}>{item.key}</Text>}
       />
 
