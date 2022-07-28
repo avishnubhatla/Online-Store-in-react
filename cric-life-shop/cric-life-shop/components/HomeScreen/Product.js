@@ -4,10 +4,12 @@ import { Text, View, StyleSheet, Pressable, Image } from 'react-native';
 export function Product(props) {
   return (
     <View style={styles.product}>
-      <Image source={{uri: props.src}} style={styles.image}/>
+      <View style={styles.imageContainer}>
+        <Image source={{uri: props.src}} style={styles.image}/>
+      </View>
       <View style={styles.textContainer}>
         <Text style={styles.productNameText}>{props.productName}</Text>
-        <Text>{props.price}</Text>
+        <Text style={{fontSize: 20}}>{props.price}</Text>
       </View>
     </View>
   )
@@ -18,16 +20,27 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 150,
     flexDirection: "row",
-    margin: 10,
+    marginVertical: 10,
+    borderStyle: "solid",
+    borderWidth: "1px",
+    borderColor: "lightgrey",
+    borderRadius: "10%",
+  },
+  imageContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
-    flex: 1,
-    objectFit: "fill"
+    objectFit: "fill",
+    width: 140,
+    height: 140,
   },
   textContainer: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    textAlign: 'center',
   },
   productNameText: {
     fontSize: 25,
