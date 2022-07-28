@@ -2,10 +2,6 @@ import React,{useState} from 'react';
 import { Text, View, StyleSheet, FlatList, ScrollView, Button,Image } from 'react-native';
 
 export function Cart(props) {
-  let sum=0;
-  for(let i;i<products.length();i++){
-    sum+=products[index].cost
-  }
   return (
     <View>
       <ScrollView>
@@ -25,7 +21,7 @@ export function Cart(props) {
         
         <FlatList
           // pass in a props object like data and put it here, then render it
-          data={sum}
+          data={props.subtotal}
           renderItem={({item}) => <Text style={styles.listText}>{item.key}</Text>}
         />
 
