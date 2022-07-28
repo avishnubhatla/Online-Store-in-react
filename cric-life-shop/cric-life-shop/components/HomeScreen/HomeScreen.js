@@ -37,5 +37,6 @@ export function HomeScreen() {
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
+    backgroundColor: "white",
   },
 });
