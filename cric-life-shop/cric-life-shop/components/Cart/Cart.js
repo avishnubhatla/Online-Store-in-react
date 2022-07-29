@@ -15,16 +15,27 @@ export function Cart(props) {
     {uri: 'https://m.media-amazon.com/images/I/51mI2UYeHGL._AC_SX466_.jpg', name: "Cricket Helmet", price: "$40", numOf: 1}])
   
   const removeItem = (index) => {
-    newProducts([
-              ...products.slice(0, index),
-              ...products.slice(index + 1)
-    ]);
+    let stuff = [...products];
+    let stuffThing = stuff[index];
+    stuffThing.numOf=stuffThing.numOf-1;
+    stuffThing.price = "$"+(stuffThing.price.slice(1)*stuffThing.numOf)
+    stuff[index]=stuffThing;
+    if(stuffThing.numOf===0){
+      newProducts([
+                ...products.slice(0, index),
+                ...products.slice(index + 1)
+      ]);
+    }
+    else{
+      newProducts(stuff);
+    }
   }
   
   const addItem = (index) => {
     let stuff = [...products];
     let stuffThing = stuff[index];
     stuffThing.numOf=stuffThing.numOf+1;
+    stuffThing.price = "$"+(stuffThing.price.slice(1)*stuffThing.numOf)
     stuff[index]=stuffThing;
     newProducts(stuff);
   }
