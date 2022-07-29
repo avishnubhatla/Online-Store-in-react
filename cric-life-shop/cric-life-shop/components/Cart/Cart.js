@@ -3,22 +3,22 @@ import { Text, View, StyleSheet, FlatList, ScrollView, Button,Image, TouchableOp
  
 export function Cart(props) {
   const [products, newProducts]=useState([
-    { uri: "https://m.media-amazon.com/images/I/51IwaYzGLCL._AC_SX679_.jpg", name: "White Ball", price: "$7", numOf: 1},
-    {uri:'https://images.squarespace-cdn.com/content/v1/5fd20db1750b345d8b151572/1607681222132-OIU32C99X3V195ZDG5AE/Red+Premier+Side.jpg?format=750w', name: "Red Ball", price: "$7", numOf: 1},
-    {uri: 'https://m.media-amazon.com/images/I/81bxuZCpdpL._AC_SY879_.jpg', name: 'Kookaburra Bat', price: "$100", numOf: 1},
-    {uri: 'https://bestcricketstore.com/wp-content/uploads/2022/01/e3e916c8-b859-46b3-b197-2c9c7d7c1f69.jpeg', name: "Cricket Stumps", price: "$70", numOf: 1},
-    {uri: 'https://cdn.shopify.com/s/files/1/0020/7477/1565/products/first-pitch-bowler-pro-2-wheel-cricket-bowling-machine-16140464029805_1024x1024.jpg?v=1612371229', name: "Bowling Machine", price: "$600", numOf: 1},
-    {uri: 'https://i.ebayimg.com/images/g/9SQAAOSwvGRh4CAH/s-l500.jpg', name: "Rope Ball", price: "$15", numOf: 1},
-    {uri: 'https://cdn.shopify.com/s/files/1/0614/7149/0275/products/dsc-neon_750x.jpg?v=1651675829', name: "Cricket Shoes", price: "$80", numOf: 1},
-    {uri: 'https://m.media-amazon.com/images/I/916LckrjstS._AC_SX679_.jpg', name: "Cricket Pitch", price: "$300", numOf: 1},
-    {uri: 'https://m.media-amazon.com/images/I/51GJDjJGHLL._AC_.jpg', name: "Cricket Kit", price: "$250", numOf: 1},
-    {uri: 'https://m.media-amazon.com/images/I/51mI2UYeHGL._AC_SX466_.jpg', name: "Cricket Helmet", price: "$40", numOf: 1}])
+    { uri: "https://m.media-amazon.com/images/I/51IwaYzGLCL._AC_SX679_.jpg", name: "White Ball", price: "$7", numOf: 1, tPrice: "$7"},
+    {uri:'https://images.squarespace-cdn.com/content/v1/5fd20db1750b345d8b151572/1607681222132-OIU32C99X3V195ZDG5AE/Red+Premier+Side.jpg?format=750w', name: "Red Ball", price: "$7", numOf: 1, tPrice: "$7"},
+    {uri: 'https://m.media-amazon.com/images/I/81bxuZCpdpL._AC_SY879_.jpg', name: 'Kookaburra Bat', price: "$100", numOf: 1, tPrice: "$7"},
+    {uri: 'https://bestcricketstore.com/wp-content/uploads/2022/01/e3e916c8-b859-46b3-b197-2c9c7d7c1f69.jpeg', name: "Cricket Stumps", price: "$70", numOf: 1, tPrice: "$70"},
+    {uri: 'https://cdn.shopify.com/s/files/1/0020/7477/1565/products/first-pitch-bowler-pro-2-wheel-cricket-bowling-machine-16140464029805_1024x1024.jpg?v=1612371229', name: "Bowling Machine", price: "$600", numOf: 1, tPrice: "$600"},
+    {uri: 'https://i.ebayimg.com/images/g/9SQAAOSwvGRh4CAH/s-l500.jpg', name: "Rope Ball", price: "$15", numOf: 1, tPrice: "$15"},
+    {uri: 'https://cdn.shopify.com/s/files/1/0614/7149/0275/products/dsc-neon_750x.jpg?v=1651675829', name: "Cricket Shoes", price: "$80", numOf: 1, tPrice: "$80"},
+    {uri: 'https://m.media-amazon.com/images/I/916LckrjstS._AC_SX679_.jpg', name: "Cricket Pitch", price: "$300", numOf: 1, tPrice: "$300"},
+    {uri: 'https://m.media-amazon.com/images/I/51GJDjJGHLL._AC_.jpg', name: "Cricket Kit", price: "$250", numOf: 1, tPrice: "$250"},
+    {uri: 'https://m.media-amazon.com/images/I/51mI2UYeHGL._AC_SX466_.jpg', name: "Cricket Helmet", price: "$40", numOf: 1, tPrice: "$40"}])
   
   const removeItem = (index) => {
     let stuff = [...products];
     let stuffThing = stuff[index];
     stuffThing.numOf=stuffThing.numOf-1;
-    stuffThing.price = "$"+(stuffThing.price.slice(1)*stuffThing.numOf)
+    stuffThing.tPrice = "$"+(stuffThing.price.slice(1)*stuffThing.numOf)
     stuff[index]=stuffThing;
     if(stuffThing.numOf===0){
       newProducts([
@@ -30,12 +30,18 @@ export function Cart(props) {
       newProducts(stuff);
     }
   }
+  const removeAll = (index) => {
+      newProducts([
+                ...products.slice(0, index),
+                ...products.slice(index + 1)
+      ]);
+  }
   
   const addItem = (index) => {
     let stuff = [...products];
     let stuffThing = stuff[index];
     stuffThing.numOf=stuffThing.numOf+1;
-    stuffThing.price = "$"+(stuffThing.price.slice(1)*stuffThing.numOf)
+    stuffThing.tPrice = "$"+(stuffThing.price.slice(1)*stuffThing.numOf)
     stuff[index]=stuffThing;
     newProducts(stuff);
   }
@@ -68,15 +74,23 @@ export function Cart(props) {
                 <Image source={{uri: product.uri}} style={{width:150, height:140}}/>
                 <View >
                   <Text style={styles.listTextBold}>{product.name} </Text>
-                  <Text style={styles.listText}>{product.price}</Text>
+                  <Text style={styles.listText}>{product.tPrice}</Text>
                   
-                  <TouchableOpacity style={styles.buttonContainer} onPress={()=>addItem(products.indexOf(product))}>
-                    <Text style={styles.buttonText}>
-                      One More
-                    </Text>
-                  </TouchableOpacity>
-                  
-                  <TouchableOpacity style={styles.buttonContainer} onPress={()=>removeItem(products.indexOf(product))}>
+                  <View style={{flexDirection:"row"}}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={()=>addItem(products.indexOf(product))}>
+                      <Text style={styles.buttonText}>
+                        +
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.buttonContainer} onPress={()=>removeItem(products.indexOf(product))}>
+                      <Text style={styles.buttonText}>
+                        -
+                      </Text>
+                    </TouchableOpacity> 
+                  </View>
+ 
+                  <TouchableOpacity style={styles.buttonContainer} onPress={()=>removeAll(products.indexOf(product))}>
                     <Text style={styles.buttonText}>
                       Delete
                     </Text>
@@ -104,7 +118,7 @@ export function Cart(props) {
               <View style={{flexDirection:"row"}}> 
                   <Text style={styles.listTextBold}>{product.name}, </Text>
                   <Text style={styles.listText}>{product.numOf}, </Text>
-                  <Text style={styles.listText}>{product.price}</Text>
+                  <Text style={styles.listText}>{product.tPrice}</Text>
               </View>
             );
           })}
@@ -197,6 +211,8 @@ const styles = StyleSheet.create({
 //
  
 //                  <Text style={styles.listText}>${(product.price.slice(1))*(num)}</Text>
+ 
+ 
  
  
  
