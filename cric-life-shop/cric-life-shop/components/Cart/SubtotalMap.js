@@ -45,7 +45,7 @@ export function SubtotalMap(props){
         </Text>
  
         {props.productList.map((product) => {
-            sum+=parseInt(product.price.slice(1))
+            sum+=parseInt(product.tPrice.slice(1))
             return (
               <View style={{flexDirection:"row"}}> 
                   <Text style={styles.listTextBold}>{product.name}, </Text>
