@@ -1,6 +1,6 @@
 import React from 'react'
 import {View,Text} from 'react-native'
-import {Buttons} from './Buttons'
+import {Buttons} from './buttons'
 export const SocialSignIn=()=>{
   const onFacebook = () => {
     alert('FB');
