@@ -10,7 +10,7 @@ export function ProductContainer(props) {
           <Text style={styles.welcomeText}>Start Your Cricketing Journey With CricLife!</Text>
         </View>
           {props.products.map(({uri, name, price }, index) => (
-          <Product src={uri} productName={name} price={price} />
+          <Product src={uri} productName={name} price={price} onPress = {props.onPress} i={index}/>
           ))}
       </ScrollView>
     </View>
@@ -31,5 +31,3 @@ const styles = StyleSheet.create({
 
   },
 });
-
-
