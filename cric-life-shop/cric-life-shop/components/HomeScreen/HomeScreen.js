@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 
 import { Text, View, StyleSheet, Image, ScrollView } from 'react-native';
 import {SearchBar } from "./SearchBar"
-import {Product} from './Product'
 import {ProductContainer} from './ProductContainer'
+import {ProductDescription} from "../ProductDescription/ProductDescription"
 
 export function HomeScreen() {
+  //products
   const [products, newProducts]=useState([
     { uri: "https://m.media-amazon.com/images/I/51IwaYzGLCL._AC_SX679_.jpg", name: "White Ball", price: "$7"},
     {uri:'https://images.squarespace-cdn.com/content/v1/5fd20db1750b345d8b151572/1607681222132-OIU32C99X3V195ZDG5AE/Red+Premier+Side.jpg?format=750w', name: "Red Ball", price: "$7"},
@@ -17,19 +18,38 @@ export function HomeScreen() {
     {uri: 'https://m.media-amazon.com/images/I/916LckrjstS._AC_SX679_.jpg', name: "Cricket Pitch", price: "$300"},
     {uri: 'https://m.media-amazon.com/images/I/51GJDjJGHLL._AC_.jpg', name: "Cricket Kit", price: "$250"},
     {uri: 'https://m.media-amazon.com/images/I/51mI2UYeHGL._AC_SX466_.jpg', name: "Cricket Helmet", price: "$40"}])
+  // products to be displayed
   const [currProducts, newCurrProducts]=useState(products)
+  //handle Search Bar
   const handleChange = (text) => {
     const newProductArray = products.filter(product => {
       return (product.name.toLowerCase().includes(text.toLowerCase()))
     });
     newCurrProducts(newProductArray)
   }
+  //check which screen
+  const [productDescrFlag, setProductDescrFlag] = useState(true)
+  //holds product to be displayed in product description when product is clicked
+  const [productToBeDisplayed, setProductToBeDisplayed] = useState(currProducts[0]);
+  //handle click on product
+  const handleClickToDescription = (index=0) => {
+    setProductToBeDisplayed(currProducts[index])
+    setProductDescrFlag(true)
+  }
 
-
+  const handleGoBack = () => {
+    setProductDescrFlag(false)
+    newCurrProducts(products)
+  }
   return (
     <View style={styles.layout}>
-      <SearchBar onChangeText={handleChange}/>
-      <ProductContainer products={currProducts}/>
+      {!productDescrFlag ? 
+      <>
+        <SearchBar onChangeText={handleChange}/>
+        <ProductContainer products={currProducts} onPress={handleClickToDescription}/>
+      </> :
+      <ProductDescription onPress={handleGoBack} product={productToBeDisplayed}/>
+      }
     </View>
   )
 }
