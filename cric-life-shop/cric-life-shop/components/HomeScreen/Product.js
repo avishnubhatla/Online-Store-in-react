@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, StyleSheet, Pressable, Image } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 export function Product(props) {
   return (
-    <View style={styles.product}>
+    <TouchableOpacity style={styles.product} onPress={() => props.onPress(props.i)}>
       <View style={styles.imageContainer}>
         <Image source={{uri: props.src}} style={styles.image}/>
       </View>
@@ -11,7 +11,7 @@ export function Product(props) {
         <Text style={styles.productNameText}>{props.productName}</Text>
         <Text style={{fontSize: 20}}>{props.price}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
