@@ -9,7 +9,7 @@ import {
   ScrollView
 } from 'react-native';
 import { AuthInputs } from './AuthInputs';
-import { Buttons } from './Buttons';
+import { Buttons } from './buttons';
 export function SignInScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
