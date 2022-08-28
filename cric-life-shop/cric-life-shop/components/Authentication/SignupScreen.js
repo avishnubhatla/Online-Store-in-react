@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { AuthInputs } from './AuthInputs';
-import { Buttons } from './Buttons';
+import { Buttons } from './buttons';
 import {SocialSignIn} from './SocialSignin'
 export function SignUpScreen() {
   const [username, setUsername] = useState('');
