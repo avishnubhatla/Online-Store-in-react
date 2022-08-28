@@ -1,13 +1,19 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import {TopBar} from "./TopBar"
+import {Description} from "./Description"
 
-export function ProductDescription() {
+export function ProductDescription(props) {
   return (
-    <View>
+    <View style={styles.layout}>
+      <TopBar onPress={props.onPress}/>
+      <Description product={props.product}/>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  
+  layout: {
+    flex: 1,
+  }
 });
