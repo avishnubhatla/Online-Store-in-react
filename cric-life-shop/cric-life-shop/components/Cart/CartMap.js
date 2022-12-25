@@ -51,20 +51,20 @@ export function CartMap(props){
               <Text style={styles.listText}>{product.tPrice}</Text>
               
               <View style={{flexDirection:"row"}}>
-                <TouchableOpacity style={styles.buttonContainer} onPress={()=>addItem(props.productList.indexOf(product))}>
+                <TouchableOpacity style={styles.add} onPress={()=>addItem(props.productList.indexOf(product))}>
                   <Text style={styles.buttonText}>
                     +
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonContainer} onPress={()=>removeItem(props.productList.indexOf(product))}>
+                <TouchableOpacity style={styles.subtract} onPress={()=>removeItem(props.productList.indexOf(product))}>
                   <Text style={styles.buttonText}>
                     -
                   </Text>
                 </TouchableOpacity> 
               </View>
 
-              <TouchableOpacity style={styles.buttonContainer} onPress={()=>removeAll(props.productList.indexOf(product))}>
+              <TouchableOpacity style={styles.deleteButton} onPress={()=>removeAll(props.productList.indexOf(product))}>
                 <Text style={styles.buttonText}>
                   Delete
                 </Text>
