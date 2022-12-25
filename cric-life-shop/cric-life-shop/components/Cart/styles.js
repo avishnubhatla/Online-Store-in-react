@@ -43,15 +43,45 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 30,
     horizontalMargin: 20,
-    height: 30,  
-    backgroundColor: '#092FB8',
+    height: 30, 
+    backgroundColor: 'purple',
     alignItems: 'center',
     button: {position: 'absolute', bottom:0},    
+    borderRadius: "10%"
+  },
+  deleteButton:{
+    flex:1,
+    justifyContent: 'flex-end',
+    marginBottom: 30,
+    marginTop: 5,
+    horizontalMargin: 20,
+    height: 30, 
+    width: 80,
+    backgroundColor: 'purple',
+    alignItems: 'center',
+    button: {position: 'absolute', bottom:0},    
+    borderRadius: "10%"
   },
   buttonText:{
     justifyContent: 'center',
     color: '#fff',
     fontSize: 18,
-  }
+  },
+  add: {
+    backgroundColor: "blue",
+    width: 40,
+    height: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "10%",
+  },
+  subtract: {
+    backgroundColor: "red",
+    width: 40,
+    height: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "10%",
+  },
  
 });
