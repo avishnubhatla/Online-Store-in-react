@@ -10,30 +10,27 @@ import {
 } from 'react-native';
 import { AuthInputs } from './AuthInputs';
 import { Buttons } from './buttons';
-export function SignInScreen() {
+import { useNavigation } from '@react-navigation/native';
+import {SocialSignIn} from './SocialSignin';
+export function SignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { height } = useWindowDimensions();
-  const onSignInPressed = () => {
-    alert('Sign in');
+  const navigator=useNavigation()
+  const onSignIn = () => {
+
+    navigator.navigate('Main')
   };
   const onForgot = () => {
-    alert('Reset Password');
+
+    navigator.navigate('ResetPassword')
   };
-  const onFacebook = () => {
-    alert('FB');
-  };
-  const onGoogle = () => {
-    alert('Google');
-  };
-  const onApple = () => {
-    alert('Apple');
-  };
+  
   const onSignUp = () => {
-    alert('Sign up');
+    navigator.navigate('SignUp')
   };
   const onContinueWithoutSignIn = () => {
-    alert('Stay Logged out');
+    navigator.navigate('Main')
   };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -56,16 +53,9 @@ export function SignInScreen() {
           setValue={setPassword}
           secureTextEntry={true}
         />
-        <Buttons text="Sign In" onPress={onSignInPressed} />
+        <Buttons text="Sign In" onPress={onSignIn} />
         <Buttons text="Forgot Password?" onPress={onForgot} type="TERETIARY" />
-        <Buttons
-          bgColor="#E7EAF4"
-          fgColor="#4765A9"
-          text="Continue with Facebook"
-          onPress={onFacebook}
-        />
-        <Buttons text="Continue with Google" onPress={onGoogle} bgColor='#FAE9EA' fgColor='#DD4D44'/>
-        <Buttons text="Continue with Apple" onPress={onApple} bgColor='#e3e3e3' fgColor='#363636' />
+        <SocialSignIn />
         <Buttons text="Don't have an account? Create one" onPress={onSignUp} type="TERETIARY" />
         <Buttons text="Continue without signing in" onPress={onContinueWithoutSignIn} type="TERETIARY" />
       </View>
