@@ -9,23 +9,28 @@ import {
 } from 'react-native';
 import { AuthInputs } from './AuthInputs';
 import { Buttons } from './buttons';
-import {SocialSignIn} from './SocialSignin'
-export function SignUpScreen() {
+import {SocialSignIn} from './SocialSignin';
+
+import { useNavigation } from '@react-navigation/native';
+export function SignUp() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
+
+  const navigator= useNavigation();
+  
   const onRegister = () => {
-    alert('Register');
-  };
-  const onForgot = () => {
-    alert('Reset Password');
+
+    navigator.navigate('Confirm');
   };
   const onSignIn = () => {
-    alert('Sign in then');
+ 
+    navigator.navigate('SignIn')
   };
   const onContinueWithoutSignIn = () => {
-    alert('Stay Logged out');
+
+    navigator.navigate('Main')
   };
   const onPrivacyPressed = () => {
     alert('privacy policy');
