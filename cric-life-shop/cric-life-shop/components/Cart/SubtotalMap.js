@@ -38,6 +38,13 @@ export function SubtotalMap(props){
  
   let sum = 0;
 
+  for (let i = 0; i < props.productList.length; i++){
+    if (props.productList[i].numOf > 0){
+    sum += parseInt(props.productList[i].tPrice.slice(1))
+    }
+    console.log(sum)
+  }
+
   return(
     <View>
         <Text style={styles.medium}>
@@ -45,13 +52,17 @@ export function SubtotalMap(props){
         </Text>
  
         {props.productList.map((product) => {
-            sum+=parseInt(product.tPrice.slice(1))
+            
             return (
+              <>
+              {product.numOf > 0 ?
               <View style={{flexDirection:"row"}}> 
                   <Text style={styles.listTextBold}>{product.name}, </Text>
                   <Text style={styles.listText}>{product.numOf}, </Text>
                   <Text style={styles.listText}>{product.tPrice}</Text>
               </View>
+              : <></>}
+              </>
             );
           })}
         <Text style={styles.medium}>
