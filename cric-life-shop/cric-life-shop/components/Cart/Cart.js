@@ -28,7 +28,7 @@ export function Cart(props) {
     );
   }
   return (
-    <View style = {styles.layout, styles.textContainer}>
+     <View style = {styles.layout, styles.textContainer}>
       <ScrollView nestedScrollEnabled={true}>
         
         <CartMap productList = {products} setter = {newProducts}/>
