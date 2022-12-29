@@ -13,10 +13,12 @@ export function CartMap(props){
   }
   
   const removeAll = (index) => {
-      props.setter([
-                ...props.productList.slice(0, index),
-                ...props.productList.slice(index + 1)
-      ]);
+    let stuff = [...props.productList];
+    let stuffThing = stuff[index];
+    stuffThing.numOf=0;
+    stuffThing.tPrice = "$"+(stuffThing.price.slice(1)*stuffThing.numOf)
+    stuff[index]=stuffThing;
+    props.setter(stuff);
   }
   
   const addItem = (index) => {
