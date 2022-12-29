@@ -9,15 +9,7 @@ export function CartMap(props){
     stuffThing.numOf=stuffThing.numOf-1;
     stuffThing.tPrice = "$"+(stuffThing.price.slice(1)*stuffThing.numOf)
     stuff[index]=stuffThing;
-    if(stuffThing.numOf===0){
-      props.setter([
-                ...props.productList.slice(0, index),
-                ...props.productList.slice(index + 1)
-      ]);
-    }
-    else{
-      props.setter(stuff);
-    }
+    props.setter(stuff);
   }
   
   const removeAll = (index) => {
