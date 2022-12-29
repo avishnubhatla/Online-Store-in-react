@@ -44,6 +44,9 @@ export function CartMap(props){
 
       {props.productList.map((product) => {
         return (
+          <>
+          {
+            product.numOf > 0 ? 
           <View style={{flexDirection:"row"}}> 
             <Image source={{uri: product.uri}} style={{width:150, height:140}}/>
             <View >
@@ -51,20 +54,20 @@ export function CartMap(props){
               <Text style={styles.listText}>{product.tPrice}</Text>
               
               <View style={{flexDirection:"row"}}>
-                <TouchableOpacity style={styles.add} onPress={()=>addItem(props.productList.indexOf(product))}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={()=>addItem(props.productList.indexOf(product))}>
                   <Text style={styles.buttonText}>
                     +
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.subtract} onPress={()=>removeItem(props.productList.indexOf(product))}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={()=>removeItem(props.productList.indexOf(product))}>
                   <Text style={styles.buttonText}>
                     -
                   </Text>
                 </TouchableOpacity> 
               </View>
 
-              <TouchableOpacity style={styles.deleteButton} onPress={()=>removeAll(props.productList.indexOf(product))}>
+              <TouchableOpacity style={styles.buttonContainer} onPress={()=>removeAll(props.productList.indexOf(product))}>
                 <Text style={styles.buttonText}>
                   Delete
                 </Text>
@@ -72,7 +75,9 @@ export function CartMap(props){
 
             </View>
             <TextInput value={product.numOf.toString()} style={{borderWidth:1, width:30, height:30}} editable={false}/>
-          </View>
+          </View> 
+          : <></>}
+</>
         );
       })}
     </View>
