@@ -1,14 +1,27 @@
 import * as React from 'react';
 import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { UseProductContext } from "../../App"
+import { UseSetProductContext } from "../../App"
 
 export function Description(props) {
   
   const [qty, setQty] = React.useState(1)
+  const products = UseProductContext()
+  const setProduct = UseSetProductContext()
 
   const handleSubtract = () => {
     if (qty > 1){
       setQty(prev => prev - 1)
     }
+  }
+
+  const setCart = () => {
+    const copy = products
+    const index = copy.indexOf(props.product)
+    copy[index].numOf += qty
+    copy[index].tPrice = "$"+(copy[index].price.slice(1)*copy[index].numOf)
+    setProduct(copy)
+    console.log(products)
   }
 
   return (
@@ -20,7 +33,7 @@ export function Description(props) {
       <View style={styles.row}>
         <Text style={styles.price}>{
 
-          "$" + (parseInt(props.product.price.slice(1, props.product.price.length)) * qty)
+          "$" + (parseInt(props.product.price.slice(1)) * qty)
 
           }</Text>
 
@@ -39,7 +52,7 @@ export function Description(props) {
 
       </View>
 
-      <TouchableOpacity style={styles.addToCart}>
+      <TouchableOpacity style={styles.addToCart} onPress={setCart}>
         <Text style={styles.addToCartText}>Add to Cart</Text>
       </TouchableOpacity>
     </View>
