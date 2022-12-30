@@ -12,12 +12,13 @@ import { Buttons } from './buttons';
 import {SocialSignIn} from './SocialSignin';
 
 import { useNavigation } from '@react-navigation/native';
-export function SignUp() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rePassword, setRePassword] = useState('');
+import {useForm} from 'react-hook-form';
 
+
+
+export function SignUp() {
+  const{control, handleSubmit, watch} = useForm();
+  const FirstPassword = watch('password');
   const navigator= useNavigation();
   
   const onRegister = () => {
@@ -43,23 +44,31 @@ export function SignUp() {
       <View style={styles.root}>
         <Text style={styles.title}>Create Account</Text>
         <AuthInputs
+          name="username"
+          control={control}
           placeholder="Username"
-          value={username}
-          setValue={setUsername}
+          rules= {{required: 'Please input a Username', minLength: {value:3, message: "Username must be at least 3 charecters long"}}}
         />
-        <AuthInputs placeholder="Email" value={email} setValue={setEmail} />
+        
+        <AuthInputs 
+          name="email" 
+          control={control}
+          placeholder="Email" 
+        />
+
         <AuthInputs
-          placeholder="Password"
-          value={password}
-          setValue={setPassword}
-          secureTextEntry={true}
+          name="password" 
+          control={control}
+          placeholder="Password" 
         />
+        
         <AuthInputs
-          placeholder="Confirm Password"
-          value={rePassword}
-          setValue={setRePassword}
-          secureTextEntry={true}
+          name ="Confirm Password"
+          control={control}
+          placeholder=" Confirm Password" 
+          rules={{validate: value=> value== FirstPassword || 'passwords do not match',}}
         />
+
         <Text style={styles.text}>
           By Registering, you agree to our{' '}
           <Text style={styles.link} onPress={onPrivacyPressed}>
@@ -70,7 +79,7 @@ export function SignUp() {
             Terms of Use
           </Text>
         </Text>
-        <Buttons text="Register" onPress={onRegister} />
+        <Buttons text="Register" onPress={handleSubmit(onRegister)} />
         <SocialSignIn/>
         <Buttons
           text="Already have an account? Sign in"
