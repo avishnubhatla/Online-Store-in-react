@@ -6,19 +6,21 @@ import {
   ToucahbleOpacity,
   Image,
   useWindowDimensions,
+  TextInput,
   ScrollView
 } from 'react-native';
 import { AuthInputs } from './AuthInputs';
 import { Buttons } from './buttons';
 import { useNavigation } from '@react-navigation/native';
 import {SocialSignIn} from './SocialSignin';
+import{useForm, Controller} from 'react-hook-form';
 export function SignIn() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+
   const { height } = useWindowDimensions();
   const navigator=useNavigation()
+  const {control, handleSubmit, formState:{errors}} = useForm();
+  
   const onSignIn = () => {
-
     navigator.navigate('Main')
   };
   const onForgot = () => {
@@ -42,18 +44,27 @@ export function SignIn() {
           }}
           resizeMode="contain"
         />
+        
         <AuthInputs
+          name="username"
           placeholder="Username"
-          value={username}
-          setValue={setUsername}
+          control={control}
+          rules={{required:'Username is required'}}
         />
         <AuthInputs
+          name="Password"
           placeholder="Password"
-          value={password}
-          setValue={setPassword}
-          secureTextEntry={true}
+          secureTextEntry
+          control={control}
+          rules={{required:'Password is required', minLength: {value: 3, message: "Password must be a minimum of 3 charecters long"}}}
         />
-        <Buttons text="Sign In" onPress={onSignIn} />
+        
+
+
+
+        <TextInput placeholder={"password"}/>
+
+        <Buttons text="Sign In" onPress={handleSubmit(onSignIn)} />
         <Buttons text="Forgot Password?" onPress={onForgot} type="TERETIARY" />
         <SocialSignIn />
         <Buttons text="Don't have an account? Create one" onPress={onSignUp} type="TERETIARY" />
