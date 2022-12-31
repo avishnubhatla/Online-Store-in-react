@@ -3,20 +3,26 @@ import {
   Text,
   StyleSheet,
   View,
-  ToucahbleOpacity,
   Image,
   useWindowDimensions,
-  ScrollView
-} from 'react-native';
+  TouchableOpacity,
+  ScrollView,
+  TextInput
+} 
+from 'react-native';
 import { AuthInputs } from './AuthInputs';
 import { Buttons } from './buttons';
 import { useNavigation } from '@react-navigation/native';
 import {SocialSignIn} from './SocialSignin';
+//new imports
+import { KeyboardAvoidingView } from 'react-native'
+import { auth } from '../firebase'
+
 export function SignIn() {
-  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { height } = useWindowDimensions();
   const navigator=useNavigation()
+
   const onSignIn = () => {
 
     navigator.navigate('Main')
@@ -32,6 +38,24 @@ export function SignIn() {
   const onContinueWithoutSignIn = () => {
     navigator.navigate('Main')
   };
+  
+  // new stuff
+  
+
+  const [email, setEmail] = useState('')
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Logged in with:', user.email);
+        navigator.navigate('Main')
+      })
+      .catch(error => alert(error.message))
+  }
+
+  
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.root}>
@@ -44,8 +68,8 @@ export function SignIn() {
         />
         <AuthInputs
           placeholder="Username"
-          value={username}
-          setValue={setUsername}
+          value={email}
+          setValue={setEmail}
         />
         <AuthInputs
           placeholder="Password"
@@ -53,7 +77,7 @@ export function SignIn() {
           setValue={setPassword}
           secureTextEntry={true}
         />
-        <Buttons text="Sign In" onPress={onSignIn} />
+        <Buttons text="Sign In" onPress={handleLogin} />
         <Buttons text="Forgot Password?" onPress={onForgot} type="TERETIARY" />
         <SocialSignIn />
         <Buttons text="Don't have an account? Create one" onPress={onSignUp} type="TERETIARY" />
@@ -61,6 +85,7 @@ export function SignIn() {
       </View>
     </ScrollView>
   );
+    
 }
 
 const styles = StyleSheet.create({
@@ -74,4 +99,5 @@ const styles = StyleSheet.create({
     maxHeight: 200,
     maxWidth: 300,
   },
+  
 });
