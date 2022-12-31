@@ -67,7 +67,7 @@ export function SignIn() {
           resizeMode="contain"
         />
         <AuthInputs
-          placeholder="Username"
+          placeholder="Email"
           value={email}
           setValue={setEmail}
         />
