@@ -10,8 +10,9 @@ import {
 import { AuthInputs } from './AuthInputs';
 import { Buttons } from './buttons';
 import {SocialSignIn} from './SocialSignin';
-
+import { auth } from '../firebase'
 import { useNavigation } from '@react-navigation/native';
+
 export function SignUp() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -38,6 +39,17 @@ export function SignUp() {
   const onTermsPressed = () => {
     alert('ters of use');
   };
+
+  const handleSignUp = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Registered with:', user.email);
+        navigator.navigate('SignIn')
+      })
+      .catch(error => alert(error.message))
+  }
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.root}>
@@ -70,7 +82,7 @@ export function SignUp() {
             Terms of Use
           </Text>
         </Text>
-        <Buttons text="Register" onPress={onRegister} />
+        <Buttons text="Register" onPress={handleSignUp} />
         <SocialSignIn/>
         <Buttons
           text="Already have an account? Sign in"
