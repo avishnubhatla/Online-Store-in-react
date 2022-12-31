@@ -19,7 +19,9 @@ export function Cart(props) {
       stuffThing.numOf=0;
       stuffThing.tPrice = "$"+(stuffThing.price.slice(1)*stuffThing.numOf)
       stuff[i]=stuffThing;
+      console.log(stuff[i])
       newProducts(stuff);
+      stuff = [...products];
     }
   }
 
